@@ -30,10 +30,8 @@ public class Geo{
 
 	@Override
  	public String toString(){
-		return 
-			"Geo{" + 
-			"lng = '" + lng + '\'' + 
-			",lat = '" + lat + '\'' + 
-			"}";
+		return
+			"lng = " + lng + '\n' +
+			"lat = " + lat;
 		}
 }

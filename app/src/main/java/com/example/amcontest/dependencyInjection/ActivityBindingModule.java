@@ -2,6 +2,7 @@ package com.example.amcontest.dependencyInjection;
 
 import com.example.amcontest.MainActivity;
 import com.example.amcontest.dependencyInjection.scoped.ActivityScoped;
+import com.example.amcontest.userslist.ContentUsersActivity;
 import com.example.amcontest.userslist.ListUsersActivity;
 import com.example.amcontest.userslist.ListUsersModule;
 
@@ -20,5 +21,7 @@ public abstract class ActivityBindingModule {
     @ContributesAndroidInjector(modules = ListUsersModule.class)
     abstract ListUsersActivity listUsersActivity();
 
-
+    @ActivityScoped
+    @ContributesAndroidInjector()
+    abstract ContentUsersActivity contentUsersActivity();
 }

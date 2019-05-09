@@ -58,7 +58,7 @@ public class ListUsersAdapter extends RecyclerView.Adapter<ListUsersAdapter.View
     }
 
     public interface UsersCallBack {
-        void onClickItem(int commentId);
+        void onClickItem(ListUsersResponse list);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,18 +78,18 @@ public class ListUsersAdapter extends RecyclerView.Adapter<ListUsersAdapter.View
 
 
 
-//            if (list.get(position).getUser().getFullName() != null) {
-//                String nameUser = list.get(position).getUser().getFullName();
-//                tvName.setText(nameUser);
-//            }
-//
-//            if (list.get(position).getComment() != null) {
-//                String comments = list.get(position).getComment();
-//                tvEmail.setText(comments);
-//            }
+            if (list.get(position).getName() != null) {
+                String nameUser = list.get(position).getName();
+                tvName.setText(nameUser);
+            }
+
+            if (list.get(position).getEmail() != null) {
+                String email = list.get(position).getEmail();
+                tvEmail.setText(email);
+            }
 
             itemView.setOnClickListener(v -> {
-                    callBack.onClickItem(0);
+                    callBack.onClickItem(list.get(position));
 
             });
         }

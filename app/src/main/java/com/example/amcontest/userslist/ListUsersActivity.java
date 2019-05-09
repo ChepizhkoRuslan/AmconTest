@@ -30,7 +30,6 @@ public class ListUsersActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users_list);
         ButterKnife.bind(this);
-
-        showFragmentOrRestore(R.id.fragment_container, listUsersFragment, getString(R.string.list_users));
+        showFragmentOrRestore(R.id.fragment_container, new ListUsersFragment(), getString(R.string.list_users));
     }
 }

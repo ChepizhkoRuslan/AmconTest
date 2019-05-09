@@ -1,111 +1,110 @@
 package com.example.amcontest.data.model;
 
 import javax.annotation.Generated;
+
 import com.google.gson.annotations.SerializedName;
 
 @Generated("com.robohorse.robopojogenerator")
 public class ListUsersResponse {
 
-	@SerializedName("website")
-	private String website;
+    @SerializedName("website")
+    private String website;
 
-	@SerializedName("address")
-	private Address address;
+    @SerializedName("address")
+    private Address address;
 
-	@SerializedName("phone")
-	private String phone;
+    @SerializedName("phone")
+    private String phone;
 
-	@SerializedName("name")
-	private String name;
+    @SerializedName("name")
+    private String name;
 
-	@SerializedName("company")
-	private Company company;
+    @SerializedName("company")
+    private Company company;
 
-	@SerializedName("id")
-	private int id;
+    @SerializedName("id")
+    private int id;
 
-	@SerializedName("email")
-	private String email;
+    @SerializedName("email")
+    private String email;
 
-	@SerializedName("username")
-	private String username;
+    @SerializedName("username")
+    private String username;
 
-	public void setWebsite(String website){
-		this.website = website;
-	}
+    public void setWebsite(String website) {
+        this.website = website;
+    }
 
-	public String getWebsite(){
-		return website;
-	}
+    public String getWebsite() {
+        return website;
+    }
 
-	public void setAddress(Address address){
-		this.address = address;
-	}
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-	public Address getAddress(){
-		return address;
-	}
+    public Address getAddress() {
+        return address;
+    }
 
-	public void setPhone(String phone){
-		this.phone = phone;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public String getPhone(){
-		return phone;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setName(String name){
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getName(){
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setCompany(Company company){
-		this.company = company;
-	}
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
-	public Company getCompany(){
-		return company;
-	}
+    public Company getCompany() {
+        return company;
+    }
 
-	public void setId(int id){
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getId(){
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setEmail(String email){
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getEmail(){
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setUsername(String username){
-		this.username = username;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getUsername(){
-		return username;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"ListUsersResponse{" +
-			"website = '" + website + '\'' + 
-			",address = '" + address + '\'' + 
-			",phone = '" + phone + '\'' + 
-			",name = '" + name + '\'' + 
-			",company = '" + company + '\'' + 
-			",id = '" + id + '\'' + 
-			",email = '" + email + '\'' + 
-			",username = '" + username + '\'' + 
-			"}";
-		}
+    @Override
+    public String toString() {
+        return
+               "id = " + id + '\n' +
+               "name = " + name + '\n' +
+               "username = " + username + '\n' +
+               "email = " + email + '\n' +
+               "phone = " + phone + '\n' +
+               "website = " + website + '\n' +
+               address + '\n' +
+               company ;
+    }
 }

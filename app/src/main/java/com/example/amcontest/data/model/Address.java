@@ -64,12 +64,11 @@ public class Address{
 	@Override
  	public String toString(){
 		return 
-			"Address{" + 
-			"zipcode = '" + zipcode + '\'' + 
-			",geo = '" + geo + '\'' + 
-			",suite = '" + suite + '\'' + 
-			",city = '" + city + '\'' + 
-			",street = '" + street + '\'' + 
-			"}";
+
+			"zipcode = " + zipcode + '\n' +
+			geo + '\n' +
+			"suite = " + suite + '\n' +
+			"city = " + city + '\n' +
+			"street = " + street;
 		}
 }

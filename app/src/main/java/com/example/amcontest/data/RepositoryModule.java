@@ -1,14 +1,22 @@
 package com.example.amcontest.data;
 
+import android.app.Application;
+
+import androidx.room.Room;
+
 import com.example.amcontest.data.annotations.Remote;
 
 import com.example.amcontest.data.remote.RemoteApi;
 import com.example.amcontest.data.remote.RemoteSource;
+
+import com.example.amcontest.data.room.AppDatabase;
+import com.example.amcontest.data.room.UsersDao;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -24,6 +32,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @SuppressWarnings("unused")
 public abstract class RepositoryModule {
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    @Inject
+    Application context;
 
     @Singleton
     @Provides
@@ -55,6 +65,8 @@ public abstract class RepositoryModule {
     @Binds
     @Remote
     abstract Source getListUsers(RemoteSource source);
+
+
 
 
 }

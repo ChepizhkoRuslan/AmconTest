@@ -2,6 +2,7 @@ package com.example.amcontest.userslist;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,12 +45,10 @@ public class ListUsersFragment extends BaseFragment implements ListUserContract.
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.simple_rv_list, null, false);
         ButterKnife.bind(this, view);
-
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage("Loading...");
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//        mProgressDialog.show();
-
+        mProgressDialog.show();
         initReviewsAdapter();
         return view;
     }
@@ -60,9 +59,8 @@ public class ListUsersFragment extends BaseFragment implements ListUserContract.
         rvListUsers.addItemDecoration(new DividerItemDecoration(rvListUsers.getContext(), manager.getOrientation()));
         rvListUsers.setLayoutManager(manager);
         rvListUsers.setAdapter(listUsersAdapter);
-
         presenter.loadListUsers();
-
+        listUsersAdapter.setUsersCallBack(list -> startActivity(new Intent(ContentUsersActivity.newInstance(getContext(),list))));
     }
 
     @Override
@@ -81,7 +79,6 @@ public class ListUsersFragment extends BaseFragment implements ListUserContract.
     @Override
     public void setListUsersToAdapter(List<ListUsersResponse> listUsers) {
         if(listUsers == null)return;
-
         listUsersAdapter.setList(listUsers);
         mProgressDialog.dismiss();
     }

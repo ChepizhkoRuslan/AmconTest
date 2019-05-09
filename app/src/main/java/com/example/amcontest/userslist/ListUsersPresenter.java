@@ -1,9 +1,16 @@
 package com.example.amcontest.userslist;
 
+import android.app.Application;
+import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
+import androidx.room.Room;
 
 import com.example.amcontest.data.Repository;
 import com.example.amcontest.data.model.ListUsersResponse;
+import com.example.amcontest.data.room.AppDatabase;
+import com.example.amcontest.data.room.Users;
+import com.example.amcontest.data.room.UsersDao;
 
 
 import java.util.List;
@@ -16,6 +23,10 @@ public class ListUsersPresenter implements ListUserContract.Presenter{
 
     private  ListUserContract.View view;
     private Repository repository;
+    private AppDatabase db;
+
+    @Inject
+    Application context;
 
     @Inject
     ListUsersPresenter(Repository repository) {
@@ -46,20 +57,37 @@ public class ListUsersPresenter implements ListUserContract.Presenter{
             }
 
             @Override
-            public void onNext(List<ListUsersResponse> reviewsUserResponse) {
-                System.out.print(reviewsUserResponse);
-//                List<Content> listReview = new ArrayList<>();
-//                int size = reviewsUserResponse.getContent().size();
-//
-//                for (int i = 0; i < size; i++) {
-//                    listReview.add(reviewsUserResponse.getContent().get(i));
-//                }
-//
-//                if (view != null) {
-//                    view.setListUsersToAdapter(listReview );
-//                }
+            public void onNext(List<ListUsersResponse> listUsersResponses) {
+                if (view != null) {
+                    view.setListUsersToAdapter(listUsersResponses );
+                    new SaveDataTask(listUsersResponses).execute();
+                }
             }
         });
     }
 
+    class SaveDataTask extends AsyncTask<Void, Void, Void> {
+        private List<ListUsersResponse> listUsersResponses;
+
+        SaveDataTask(List<ListUsersResponse> listUsersResponses) {
+            this.listUsersResponses = listUsersResponses;
+        }
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            db = repository.provideDatabase();
+            UsersDao usersDao = db.userDao();
+            Users users = new Users();
+            for(ListUsersResponse us : listUsersResponses) {
+                users.setName(us.getName());
+                users.setLat(us.getAddress().getGeo().getLat());
+                users.setLng(us.getAddress().getGeo().getLng());
+                users.setContentUsers(us.toString());
+                usersDao.insert(users);
+            }
+            return null;
+        }
+    }
 }
+
+
