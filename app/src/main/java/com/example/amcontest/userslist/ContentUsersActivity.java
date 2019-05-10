@@ -2,7 +2,6 @@ package com.example.amcontest.userslist;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -23,14 +22,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ContentUsersActivity extends FragmentActivity implements OnMapReadyCallback {
-
-
     @BindView(R.id.user_content)
     TextView tvContent;
 
     private static ListUsersResponse contentUsers;
     private GoogleMap mMap;
-    private static double lat = 0.0, lon = 0.0;
+    private double lat = 0.0, lon = 0.0;
 
 
     @Inject
@@ -39,8 +36,6 @@ public class ContentUsersActivity extends FragmentActivity implements OnMapReady
 
     public static Intent newInstance(Context context, ListUsersResponse contentUser) {
         contentUsers = contentUser;
-        lat = Double.parseDouble(contentUsers.getAddress().getGeo().getLat());
-        lon = Double.parseDouble(contentUsers.getAddress().getGeo().getLng());
         return new Intent(context, ContentUsersActivity.class);
     }
 
@@ -49,6 +44,10 @@ public class ContentUsersActivity extends FragmentActivity implements OnMapReady
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_place);
         ButterKnife.bind(this);
+
+        lat = Double.parseDouble(contentUsers.getAddress().getGeo().getLat());
+        lon = Double.parseDouble(contentUsers.getAddress().getGeo().getLng());
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapViewInfo_new_place);
         mapFragment.getMapAsync(this);
@@ -57,13 +56,12 @@ public class ContentUsersActivity extends FragmentActivity implements OnMapReady
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng latLng = new LatLng(lat, lon);
+        LatLng latLng = new LatLng(lat,lon);
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.addMarker(new MarkerOptions().position(latLng).title("User"));
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(latLng)
-                .zoom(13)
                 .build();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
         mMap.animateCamera(cameraUpdate);
